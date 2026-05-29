@@ -12,7 +12,7 @@ const cliEntry = new URL("../src/index.ts", import.meta.url).pathname;
 function runCli(args: string[], env?: Record<string, string>) {
   return spawnSync(nodeBin, ["--experimental-strip-types", cliEntry, ...args], {
     encoding: "utf8",
-    env: { ...process.env, ...env },
+    env: { ...process.env, NODE_NO_WARNINGS: "1", ...env },
     timeout: 15000,
   });
 }
@@ -27,7 +27,7 @@ async function runCliAsync(
       ["--experimental-strip-types", cliEntry, ...args],
       {
         encoding: "utf8",
-        env: { ...process.env, ...env },
+        env: { ...process.env, NODE_NO_WARNINGS: "1", ...env },
         timeout: 15000,
       },
     );

@@ -36,7 +36,7 @@ async function main(): Promise<void> {
   }
 
   if (argv.includes("--version")) {
-    process.stdout.write(`bgc (bitget-client) using bitget-agent-sdk ${SERVER_VERSION}\n`);
+    process.stdout.write(`bgc (bitget-agent-cli) using bitget-agent-sdk ${SERVER_VERSION}\n`);
     return;
   }
 

@@ -1,12 +1,12 @@
-# bitget-client (`bgc`)
+# bitget-agent-cli (`bgc`)
 
-[![npm](https://img.shields.io/npm/v/bitget-client.svg)](https://www.npmjs.com/package/bitget-client)
+[![npm](https://img.shields.io/npm/v/bitget-agent-cli.svg)](https://www.npmjs.com/package/bitget-agent-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 The **shell surface** of the [Bitget Agent Hub](https://github.com/bitget/agent-hub) — invoke any of 56+ Bitget API tools straight from your terminal or your shell-based AI assistant (Claude Code, Codex CLI, OpenClaw).
 
 ```bash
-npm install -g bitget-client
+npm install -g bitget-agent-cli
 ```
 
 The binary is **`bgc`**.
@@ -48,8 +48,8 @@ Use a Bitget **Demo API Key** for `BITGET_API_KEY` etc. when running with `--pap
 
 `bgc` exists so that AI assistants **that already live in your shell** (Claude Code, Codex CLI, OpenClaw) can drive Bitget without any extra integration — the LLM writes a `bgc ...` command, the shell runs it, the JSON comes back.
 
-If your assistant talks **MCP** (Claude Desktop, Cursor, Continue), use [`bitget-mcp-server`](https://github.com/bitget/agent-mcp) instead.
-If you want Claude Code / Codex / OpenClaw to know how to *use* `bgc` semantically (without you teaching it each command), install [`bitget-skill`](https://github.com/bitget/agent-skill).
+If your assistant talks **MCP** (Claude Desktop, Cursor, Continue), use [`bitget-agent-mcp`](https://github.com/bitget/agent-mcp) instead.
+If you want Claude Code / Codex / OpenClaw to know how to *use* `bgc` semantically (without you teaching it each command), install [`bitget-agent-skill`](https://github.com/bitget/agent-skill).
 
 ## License
 
