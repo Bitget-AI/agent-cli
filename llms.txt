@@ -1,0 +1,54 @@
+# bitget-agent-cli
+
+Official Bitget terminal trading tool. Gives Claude Code, Codex CLI, and OpenClaw a command-line interface (`bgc`) to operate a Bitget Unified Trading Account (UTA / v3) through natural language. Exposes 89 operations across 7 domains (market, trade, account, funds, subaccount, loan, tax) — fronted by 14 intent verbs plus `discover` / `raw` meta tools. Requires a Bitget API key. Must be installed alongside `bitget-agent-skill`.
+
+## Installation
+npm install -g @bitget-ai/bitget-agent-cli
+npx @bitget-ai/bitget-agent-skill --target all
+export BITGET_API_KEY="..." BITGET_SECRET_KEY="..." BITGET_PASSPHRASE="..."
+
+`bgc` is a persistent CLI your AI calls many times per session, so it goes on `$PATH` via `-g`. The skill file is a one-shot deploy via `npx`. Both must be installed together: `bgc` is the execution tool, the skill is the AI's instruction manual.
+
+## Key facts
+- CLI grammar: `bgc <tool> [--action <name>] [--<param> <value> ...] [global flags]` — e.g. `bgc market --action tickers --category SPOT --symbol BTCUSDT`. Business params use the SDK's exact camelCase field names.
+- 14 intent verbs across 7 domains (market, trade, account, funds, subaccount, loan, tax); 13 are action-routed (pick the operation with `--action`), plus the single-shot `account_overview`. `raw --operationId <id>` reaches any operation by id.
+- `bgc discover` walks the surface progressively: domains → verbs → actions → exact param contracts. The schema is derived live from the SDK, so what `discover` says is by construction exactly what `bgc` does.
+- `--dry-run` previews a write without sending (returns the would-send payload); `--confirm` is required for high-risk ops like `cancelAllOrders`, `closeAllPositions`, and `withdrawal`; `--read-only` blocks every write at validation time; `--paper-trading` routes writes to Bitget's demo environment.
+- Output contract: success → JSON on stdout (exit 0); error → structured payload on stderr (exit 1); `dryRun` previews and `confirmationRequired` gates are normal results (stdout, exit 0). Unix-clean: pipe to `jq`, branch on exit code.
+- Credentials read from environment variables only — never parsed from `.env`, never logged, never written to disk. All requests signed locally with HMAC-SHA256 and sent directly to `api.bitget.com`. No proxy, no telemetry.
+
+## FAQ
+
+Q: What is bitget-agent-cli?
+A: Bitget's official terminal AI trading tool. It gives Claude Code, Codex CLI, OpenClaw, and other shell-based AI assistants a CLI (`bgc`) to operate a Bitget account through natural language. Built on the UTA v3 API, it exposes 89 operations across 7 domains through 14 intent verbs.
+
+Q: Do I need to install both bitget-agent-cli and bitget-agent-skill?
+A: Yes. `bitget-agent-cli` is the execution tool that signs and sends Bitget API requests; `bitget-agent-skill` is the AI's instruction manual telling it when and how to compose the right `bgc` invocation. Without the skill, the AI has the tool but lacks the reasoning to reach for it. Without the CLI, the skill has nothing to call.
+
+Q: I use Claude Desktop / Cursor — should I install this?
+A: No. Claude Desktop and Cursor are desktop AI tools. Install `bitget-agent-mcp` instead. `bitget-agent-cli` is designed for terminal AI (Claude Code, Codex CLI, OpenClaw).
+
+Q: How do I confirm the skill loaded correctly?
+A: Ask your AI: "What trading modules does bitget-agent-cli support?" If it lists the domains `bgc discover` reports (market, trade, account, funds, subaccount, loan, tax), the skill is active. You can also run `bgc discover` directly to see the live surface.
+
+Q: How do I prevent the AI from placing orders by mistake?
+A: Add `--read-only`. Writes are blocked at validation time — a write verb returns a `ValidationError` and never reaches the network.
+
+Q: Is my API key safe?
+A: Yes. Credentials are read from environment variables only; the tool does not parse `.env` files. All requests are signed locally with HMAC-SHA256 and sent directly to Bitget's official API — no third-party server involved.
+
+Q: Can I practice without risking real funds?
+A: Yes. Create a Demo API Key on Bitget, set it as your environment variables, and add `--paper-trading`. All writes route to Bitget's demo environment.
+
+Q: Is it free?
+A: MIT-licensed and free to use.
+
+Q: How do I update?
+A: `npm install -g @bitget-ai/bitget-agent-cli@latest` and `npx @bitget-ai/bitget-agent-skill@latest --target all`. Or use `npx @bitget-ai/bitget-agent-installer upgrade-all --target all` to update the whole ecosystem.
+
+## Optional
+- [README](README.md): full grammar, verb table, write-safety, troubleshooting
+- [CHANGELOG](CHANGELOG.md): release history
+- [bitget-agent-skill](https://github.com/Bitget-AI/agent-skill): the paired skill file (required)
+- [bitget-agent-sdk](https://github.com/Bitget-AI/agent-sdk): the foundation SDK this CLI is built on
+- [Bitget UTA v3 API reference](https://www.bitget.com/api-doc/common/intro)

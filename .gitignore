@@ -1,12 +1,28 @@
+# Dependencies & build
 node_modules/
 dist/
+spug-dist/
+lib/
+*.tgz
+
+# E2E quality reports (generated locally; never committed)
+e2e-reports/
+
+# Environment & secrets — never commit these
+.env
+.env.*
+.env-*
+.env.local
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# OS & editor
 .DS_Store
 .idea/
 .vscode/
-.env
-.env.*
-*.tgz
 *.log
-.changeset/*.md
-!.changeset/README.md
-!.changeset/config.json
+*.swp
+*.swo
