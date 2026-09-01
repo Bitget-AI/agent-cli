@@ -7,6 +7,7 @@ lib/
 
 # E2E quality reports (generated locally; never committed)
 e2e-reports/
+coverage/
 
 # Environment & secrets — never commit these
 .env

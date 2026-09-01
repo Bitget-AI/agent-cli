@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Bitget-AI/agent-cli/actions/workflows/ci.yml"><img src="https://github.com/Bitget-AI/agent-cli/actions/workflows/ci.yml/badge.svg" alt="Bitget Agent CLI continuous integration build status" /></a>
   <a href="https://www.npmjs.com/package/@bitget-ai/bitget-agent-cli"><img src="https://img.shields.io/npm/v/%40bitget-ai%2Fbitget-agent-cli.svg?style=flat-square&color=0070f3&label=npm" alt="npm package version for @bitget-ai/bitget-agent-cli" /></a>
   <a href="https://www.npmjs.com/package/@bitget-ai/bitget-agent-cli"><img src="https://img.shields.io/npm/dm/%40bitget-ai%2Fbitget-agent-cli.svg?style=flat-square&color=026e00&label=downloads" alt="npm monthly downloads for @bitget-ai/bitget-agent-cli" /></a>
   <img src="https://img.shields.io/badge/Node.js-%E2%89%A520-026e00?style=flat-square" alt="Requires Node.js 20 or higher" />
@@ -37,6 +38,8 @@
 Most CLIs are built for humans and merely tolerate automation. `bgc` is built the other way around: every design choice optimizes for an **AI assistant driving it from a shell**. A small set of **intent verbs**, a **self-describing surface** the agent walks at runtime, and **deterministic write-safety** that makes it safe to hand the keys to an autonomous agent.
 
 Built on the [Bitget Unified Trading Account (UTA / v3) API](https://www.bitget.com/api-doc/common/intro), `bgc` exposes **89 operations across 7 domains** (market, trade, account, funds, subaccount, loan, tax) — fronted by **14 intent verbs** plus the `discover` / `raw` meta tools. No host application config, no plugins: install and tell your AI what to trade.
+
+Learn more on the [bitget-agent-cli product page](https://www.bitget.com/campaigns/bitget-agent-cli).
 
 > **Part of [Bitget Agent Hub](https://github.com/Bitget-AI/agent_hub)** — the official open-source AI ecosystem. See the hub for desktop AI tools (MCP), the foundation SDK, and market-analysis skills.
 
